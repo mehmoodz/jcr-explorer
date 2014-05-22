@@ -1,0 +1,23 @@
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-21 20:41:49
+project --topLevelPackage com.jcrexplorer
+hint
+hint interface
+help
+help class
+help interface
+help service
+interface --class ~.core.JCRManager
+help interface
+class --class ~.core.JCRManager
+hint
+addon search
+addon search jcr
+dependency add --artifactId jackrabbit-core --groupId org.apache.jackrabbit --version 2.4.0
+dependency add --artifactId jackrabbit-jca --groupId org.apache.jackrabbit --version 2.4.0
+dependency add --artifactId jcr --groupId javax.jcr --version  2.0
+dependency add --artifactId jackrabbit-jcr-rmi --groupId org.apache.jackrabbit --version 2.4.0
+// [failed] dependency add --artifactId jackrabbit-jcr-commons --groupId org.apache.jackrabbit --version  2.4.0
+dependency add --artifactId jackrabbit-jcr-commons --groupId org.apache.jackrabbit --version  2.4.0
+dependency add --artifactId jackrabbit-jcr-server --groupId org.apache.jackrabbit --version  2.4.0
+quit
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-21 22:25:50
