@@ -6,5 +6,4 @@ public interface IContentExplorer {
 	public Node getRoot();
 	public Node childNode(Node node);
 	public Node childNode(String nodeName);
-	 
 }
