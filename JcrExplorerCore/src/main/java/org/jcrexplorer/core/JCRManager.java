@@ -1,22 +1,13 @@
 package org.jcrexplorer.core;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 
 public class JCRManager extends AbstractJCRManager{
 	
-	
-	
-	public static void main(String[] args) {
-		
-		ApplicationContext context = new ClassPathXmlApplicationContext(
-				"applicationContext.xml");
- 
-		 		
-		JCRManager manager=(JCRManager)context.getBean("jcrManager");
-		manager.login("anonymousId",null);
-		
+	 @Override
+	public Session currentSession() throws RepositoryException {
+		// TODO Auto-generated method stub
+		return getTemplate().getSessionFactory().getSession();
 	}
-
-
 }

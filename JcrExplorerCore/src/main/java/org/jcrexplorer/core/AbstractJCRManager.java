@@ -1,32 +1,36 @@
 package org.jcrexplorer.core;
 
 import javax.jcr.Repository;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
 import javax.jcr.Workspace;
-import javax.naming.InitialContext;
 
-import org.springframework.dao.support.DaoSupport;
+import org.springmodules.jcr.support.JcrDaoSupport;
 
-public abstract class AbstractJCRManager  implements IJCRManager {
-	
-	protected String repoPath;
-	
-	protected Session session=null;
+public abstract class AbstractJCRManager extends JcrDaoSupport implements
+		IJCRManager {
+
+	protected Repository jcrRepository;
+
+	protected Session session = null;
+
 	public Session login(String username, String password) {
 		// TODO Auto-generated method stub
 		try {
-			InitialContext context = new InitialContext();
-			Repository repository = (Repository) context.lookup(repoPath);
 			SimpleCredentials credentials = new SimpleCredentials(username,
 					password.toCharArray());
-			this.session = repository.login(credentials);
- 
+			this.session = jcrRepository.login(credentials);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return this.session;
+	}
+
+	public void setJcrRepository(Repository jcrRepository) {
+		this.jcrRepository = jcrRepository;
 	}
 
 	public Workspace workspace() {
@@ -34,14 +38,12 @@ public abstract class AbstractJCRManager  implements IJCRManager {
 		return null;
 	}
 
-	public Session currentSession() {
+	public Session currentSession() throws RepositoryException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public void setRepoPath(String repoPath) {
-		this.repoPath = repoPath;
-	}
-
+	
+ 
 
 }
