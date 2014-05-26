@@ -1,4 +1,4 @@
-package org.jcrexplorer;
+package org.jcrexplorer.core;
 
 import javax.jcr.RepositoryException;
 
