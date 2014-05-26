@@ -3,21 +3,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-3.0.xsd   http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   http://www.springframework.org/schema/jee   http://www.springframework.org/schema/jee/spring-jee-3.0.xsd   http://www.springframework.org/schema/tx   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 
 
-	<bean id="jndiJCRRepoDataSource" class="javax.jcr.Repository"
-		p:factory="org.apache.jackrabbit.core.jndi.BindableRepositoryFactory"
-		p:configFilePath="jcrconfig.xml" p:repHomeDir="D:/Projects/JCR_REPO/ENT_GEO_REPO/jcr_repo/" />
-	
-	<jee:jndi-lookup id="jcrRepoDataSource" jndi-name="java:comp/env/jndiJCRRepoDataSource" expected-type="javax.jcr.Repository" />
+	<bean id="jcr-repository" class="org.springmodules.jcr.jackrabbit.RepositoryFactoryBean">
+		<!-- normal factory beans params -->
+		<property name="configuration" value="classpath:jcrconfig.xml" />
+		<property name="homeDir" value="file:D:/Projects/enterprise_framework/newjcr" />
+	</bean>
 
 	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
-		<property name="jcrRepository" ref="jcrRepoDataSource" />
+		<property name="jcrRepository" ref="jcr-repository" />
 	</bean>
 
 

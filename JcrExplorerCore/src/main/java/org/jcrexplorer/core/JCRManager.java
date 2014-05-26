@@ -8,6 +8,8 @@ public class JCRManager extends AbstractJCRManager{
 	 @Override
 	public Session currentSession() throws RepositoryException {
 		// TODO Auto-generated method stub
-		return getTemplate().getSessionFactory().getSession();
+		return super.session;
 	}
+	 
+	
 }

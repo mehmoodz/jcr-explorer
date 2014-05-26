@@ -6,9 +6,7 @@ import javax.jcr.Session;
 import javax.jcr.SimpleCredentials;
 import javax.jcr.Workspace;
 
-import org.springmodules.jcr.support.JcrDaoSupport;
-
-public abstract class AbstractJCRManager extends JcrDaoSupport implements
+public abstract class AbstractJCRManager  implements
 		IJCRManager {
 
 	protected Repository jcrRepository;
@@ -35,12 +33,12 @@ public abstract class AbstractJCRManager extends JcrDaoSupport implements
 
 	public Workspace workspace() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.session.getWorkspace();
 	}
 
 	public Session currentSession() throws RepositoryException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.session;
 	}
 	
 	
