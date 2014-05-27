@@ -16,10 +16,12 @@
 	</bean>
 
 	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
-		<property name="jcrRepository" ref="jcr-repository" />
+		<constructor-arg name="repository" ref="jcr-repository" />
+		<constructor-arg name="username" value="admin" />
+		<constructor-arg name="password" value="admin" />
 	</bean>
 
-
+	<bean id="contentExplorer" class="org.jcrexplorer.core.ContentExplorer" />
 
 
 </beans>

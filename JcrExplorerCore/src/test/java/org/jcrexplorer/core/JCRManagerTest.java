@@ -3,20 +3,16 @@ package org.jcrexplorer.core;
 import javax.jcr.RepositoryException;
 
 import org.junit.Assert;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Unit test for JCR Manager
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext-test.xml")
-public class JCRManagerTest {
+
+public class JCRManagerTest extends AbstractJCRExplorerTestCase{
 
 	@Autowired
-	private JCRManager jcrManager;
+	private IJCRManager jcrManager;
 
 	@org.junit.Test
 	public void testLogin() throws RepositoryException {

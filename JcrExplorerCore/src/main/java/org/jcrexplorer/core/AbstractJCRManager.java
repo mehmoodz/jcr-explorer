@@ -27,9 +27,7 @@ public abstract class AbstractJCRManager  implements
 		return this.session;
 	}
 
-	public void setJcrRepository(Repository jcrRepository) {
-		this.jcrRepository = jcrRepository;
-	}
+	 
 
 	public Workspace workspace() {
 		// TODO Auto-generated method stub
