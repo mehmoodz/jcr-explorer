@@ -5,7 +5,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext-test.xml")
-public class AbstractJCRExplorerTestCase {
+@ContextConfiguration("classpath:applicationContext-core-test.xml")
+public abstract class AbstractJCRExplorerTestCase {
 
 }

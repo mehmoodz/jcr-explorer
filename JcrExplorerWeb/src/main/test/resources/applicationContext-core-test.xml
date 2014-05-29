@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+	http://www.springframework.org/schema/context   
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+
+	<bean id="jcr-repository" class="org.springmodules.jcr.jackrabbit.RepositoryFactoryBean">
+		<!-- normal factory beans params -->
+		<property name="configuration" value="classpath:jcrconfig.xml" />
+		<property name="homeDir" value="file:D:/Projects/enterprise_framework/newjcr" />
+	</bean>
+
+	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
+		<constructor-arg name="repository" ref="jcr-repository" />
+		<constructor-arg name="username" value="admin" />
+		<constructor-arg name="password" value="admin" />
+	</bean>
+
+	<bean id="contentExplorer" class="org.jcrexplorer.core.ContentExplorer" />
+
+
+</beans>
