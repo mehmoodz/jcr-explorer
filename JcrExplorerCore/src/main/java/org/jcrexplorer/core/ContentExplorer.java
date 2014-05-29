@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,6 +32,15 @@ public class ContentExplorer implements IContentExplorer {
 	public Node getRoot() throws RepositoryException {
 		// TODO Auto-generated method stub
 		return jcrManager.currentSession().getRootNode();
+	}
+
+	public List<Node> excute(String queryStr, String type)
+			throws RepositoryException {
+		// TODO Auto-generated method stub
+		QueryManager queryManager = jcrManager.workspace().getQueryManager();
+		Query query = queryManager.createQuery(queryStr, type);
+		QueryResult result = query.execute();
+		return Utils.getNodes(result.getNodes());
 	}
 
 }

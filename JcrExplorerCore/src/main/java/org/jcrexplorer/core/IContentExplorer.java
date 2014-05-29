@@ -9,4 +9,5 @@ public interface IContentExplorer {
 	public List<Node> children(Node node) throws RepositoryException;
 	public List<Node> children(String path) throws RepositoryException;
 	public Node getRoot() throws RepositoryException;
+	public List<Node> excute(String queryStr,String type) throws RepositoryException;
 }
