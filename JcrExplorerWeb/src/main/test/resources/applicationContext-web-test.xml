@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
 	
-	<context:component-scan base-package="com.jcrexplorer.controller" />
+	<context:component-scan base-package="com.jcrexplorer.dto,com.jcrexplorer.controller" />
 	<mvc:annotation-driven />
 	 
 	<import resource="classpath:applicationContext-core-test.xml"/>

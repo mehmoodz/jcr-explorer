@@ -14,7 +14,7 @@
 	<bean id="jcr-repository" class="org.springmodules.jcr.jackrabbit.RepositoryFactoryBean">
 		<!-- normal factory beans params -->
 		<property name="configuration" value="classpath:jcrconfig.xml" />
-		<property name="homeDir" value="file:D:/Projects/enterprise_framework/newjcr" />
+		<property name="homeDir" value="file:${PATH}" />
 	</bean>
 
 	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
