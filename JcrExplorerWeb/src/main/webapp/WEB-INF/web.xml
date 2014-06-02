@@ -7,7 +7,7 @@
 	<display-name>JCR-Explorer</display-name>
 
 	<servlet>
-		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-name>applicationContext-web</servlet-name>
 		<servlet-class>
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -15,18 +15,8 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-name>applicationContext-web</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-	
-	 <context-param>
-	<param-name>contextConfigLocation</param-name>
-	<param-value>/WEB-INF/classes/applicationContext-web.xml</param-value>
-  </context-param>
  
-  <listener>
-        <listener-class>
-		org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-  </listener>
 </web-app>

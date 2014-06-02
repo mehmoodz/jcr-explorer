@@ -9,7 +9,7 @@
 
 
 	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
-		<property name="repoPath" ref="jackrabbit.repository.path" />
+		<constructor-arg name="repository" ref="jackrabbit.repository.path"  type="javax.jcr.Repository"/>
 		<constructor-arg name="username" value="admin" />
 		<constructor-arg name="password" value="admin" />
 	</bean>
