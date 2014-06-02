@@ -7,9 +7,13 @@
 	http://www.springframework.org/schema/context   
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	
-	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager" >
-		<property name="repoPath" ref="jackrabbit.repository.path" />
-	</bean>
 
+	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
+		<property name="repoPath" ref="jackrabbit.repository.path" />
+		<constructor-arg name="username" value="admin" />
+		<constructor-arg name="password" value="admin" />
+	</bean>
+	
+	<bean id="contentExplorer" class="org.jcrexplorer.core.ContentExplorer" />
+	
 </beans>

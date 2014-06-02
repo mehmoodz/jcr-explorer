@@ -9,7 +9,9 @@ import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ContentExplorer implements IContentExplorer {
 
 	@Autowired
@@ -41,6 +43,10 @@ public class ContentExplorer implements IContentExplorer {
 		Query query = queryManager.createQuery(queryStr, type);
 		QueryResult result = query.execute();
 		return Utils.getNodes(result.getNodes());
+	}
+
+	public void setJcrManager(JCRManager jcrManager) {
+		this.jcrManager = jcrManager;
 	}
 
 }

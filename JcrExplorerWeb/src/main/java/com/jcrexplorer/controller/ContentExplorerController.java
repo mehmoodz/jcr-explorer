@@ -47,4 +47,12 @@ public class ContentExplorerController {
 		return responseAssembler.assemble(contentExplorer
 				.excute(queryStr, type));
 	}
+
+	public void setContentExplorer(ContentExplorer contentExplorer) {
+		this.contentExplorer = contentExplorer;
+	}
+
+	public void setResponseAssembler(NodeResponseAssembler responseAssembler) {
+		this.responseAssembler = responseAssembler;
+	}
 }
