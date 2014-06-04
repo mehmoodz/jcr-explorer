@@ -17,4 +17,5 @@ Explore Jackrabbit Repository, Search, Query , find depedencies
 * Dependency Graph for the contents published
 * Configurable inside existing Projects (Maven overlay, or WEBDAV Connections)
 
-
+### Thanks To:
+ [This link](http://startbootstrap.com/sb-admin-v2)
