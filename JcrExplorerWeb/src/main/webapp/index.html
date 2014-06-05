@@ -16,7 +16,11 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="css/sb-admin.css" rel="stylesheet">
-
+	
+	
+	<link rel="stylesheet" href="tree/jquery.treeview.css" />
+	 
+	
 </head>
 
 <body>
@@ -55,6 +59,31 @@
                         </li>
                         <li>
 								<!-- Explorer Tree -->
+								<ul id="browser" class="filetree">
+		<li><span class="folder">Folder 1</span>
+			<ul>
+				<li><span class="file">Item 1.1</span></li>
+			</ul>
+		</li>
+		<li><span class="folder">Folder 2</span>
+			<ul>
+				<li><span class="folder">Subfolder 2.1</span>
+					<ul id="folder21">
+						<li><span class="file">File 2.1.1</span></li>
+						<li><span class="file">File 2.1.2</span></li>
+					</ul>
+				</li>
+				<li><span class="file">File 2.2</span></li>
+			</ul>
+		</li>
+		<li class="closed"><span class="folder">Folder 3 (closed at start)</span>
+			<ul>
+				<li><span class="file">File 3.1</span></li>
+			</ul>
+		</li>
+		<li><span class="file">File 4</span></li>
+	</ul>
+								 
                         </li>
                             
                     </ul>
@@ -90,6 +119,13 @@
     <script src="js/sb-admin.js"></script>
 
     <!-- Page-Level Demo Scripts - Blank - Use for reference -->
+	
+	<script src="tree/jquery.treeview.js" type="text/javascript"></script>
+	<script>
+	$(document).ready(function(){
+		$("#browser").treeview();
+	});
+	</script>
 
 </body>
 
