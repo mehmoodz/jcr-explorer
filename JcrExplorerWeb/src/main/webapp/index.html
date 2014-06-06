@@ -3,123 +3,163 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JCR-Explorer</title>
+<title>JCR-Explorer</title>
 
-    <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+<!-- Core CSS - Include with every page -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <!-- Page-Level Plugin CSS - Blank -->
+<!-- Page-Level Plugin CSS - Blank -->
 
-    <!-- SB Admin CSS - Include with every page -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-	
-	
-	<link rel="stylesheet" href="jqtree/themes/default/style.min.css" />
-	
+<!-- SB Admin CSS - Include with every page -->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="jqtree/jqtree.css" />
+
 </head>
 
 <body>
 
-    <div id="wrapper">
+	<div id="wrapper">
 
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">JCR Explorer</a>
-            </div>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">JCR Explorer</a>
+			</div>
 			<ul class="nav navbar-top-links navbar-right">
 				<li class="explore-path">/</li>
 			</ul>
-		 
-            <!-- /.navbar-header -->
 
-            <div class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
+			<!-- /.navbar-header -->
+
+			<div class="navbar-default navbar-static-side" role="navigation">
+				<div class="sidebar-collapse" style="overflow:scroll;">
+					<ul class="nav" id="side-menu">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div> <!-- /input-group -->
+						</li>
+						<li style="overflow:scroll;">
 							<!-- Explorer Tree -->
-							
-						<div id="explorer">
-								<ul id="tree_container">
-					   
-								</ul>
 
-								
-							</div>
- 								 
-                        </li>
-                            
-                    </ul>
-                    <!-- /#side-menu -->
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+							<div id="explorer"></div>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4 class="page-header">Node Details</h4>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+						</li>
 
-    </div>
-    <!-- /#wrapper -->
+					</ul>
+					<!-- /#side-menu -->
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
 
-    <!-- Core Scripts - Include with every page -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h4 class="page-header">Node Details</h4>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /#page-wrapper -->
 
-    <!-- Page-Level Plugin Scripts - Blank -->
+	</div>
+	<!-- /#wrapper -->
 
-    <!-- SB Admin Scripts - Include with every page -->
-    <script src="js/sb-admin.js"></script> 
-	<script src="jqtree/jstree.min.js"></script>
+	<!-- Core Scripts - Include with every page -->
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+	<!-- Page-Level Plugin Scripts - Blank -->
+
+	<!-- SB Admin Scripts - Include with every page -->
+	<script src="js/sb-admin.js"></script>
+	<script src="jqtree/tree.jquery.js"></script>
 	<script>
-		$(function () { 
-			$('#tree').jstree({
-				'core' : {
-					'data' : {
-						'url' : 'http://localhost:8180/JcrExplorerWeb/services/root',
-						'data' : function (data) {
-							 return{'id':'cool'}
-						}
-					  }
-			});
-			 $('#explorer').on("changed.jstree", function (e, data) {
-				console.log(data.selected);
-				});
-				
-		 
+		var contextUrl = $(location).attr('href');
+		var tree = null ;
+		$(function() {
+			
+			tree=$('#explorer');
+			makeRequest(contextUrl + "/services/explore?path=/");
+			tree.bind(
+					'tree.click',
+					function(event) {
+						var node = event.node;
+						makeRequest(contextUrl + "/services/explore?path="
+								+ node.id, node);
+					});
 		});
-		
-		
+
+		function makeRequest(url, node) {
+			$.getJSON(url, function(data) {
+				if (!data) {
+					return;
+				}
+				console.log(data);
+				updateTree(transform(data), node);
+			});
+		}
+		function updateTree(data, parent_node) {
+			console.log(tree.tree('getTree'));
+			if (tree.tree('getTree')) {
+				tree.tree('loadData', data, parent_node);
+			} else {
+				initTree(data);
+			}
+		}
+		function initTree(data) {
+			console.log(data);
+			console.log('here');
+			tree.tree({
+				data : data
+			});
+		}
+
+		function transform(data) {
+			treeModel = [];
+			if (data.length) {
+				$.each(data, function(index, node) {
+					console.log(node);
+					buildModel(treeModel, node);
+				});
+			} else { //if single node
+				buildModel(treeModel, data);
+			}
+			return treeModel;
+		}
+
+		function buildModel(treeModel, data) {
+			if (data) {
+				if (!data.name || data.name == '') {
+					data.name = data.path;
+				}
+				treeModel.push({
+					label : data.name,
+					id : data.path
+				});
+			}
+		}
 	</script>
 </body>
 
