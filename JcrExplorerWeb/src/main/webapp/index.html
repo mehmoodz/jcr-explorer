@@ -19,7 +19,7 @@
 
 
 <link rel="stylesheet" href="jqtree/jqtree.css" />
-<link rel="stylesheet" href="css/atelier-forest.light.css" />
+<link rel="stylesheet" href="css/railscasts.css" />
 
  
 </head>
@@ -76,9 +76,9 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h4 class="page-header">Node Details</h4>
+					<strong class="page-header currentPage"></strong>
 					<div class="jcrContent">
-							<pre>
+							<pre >
 								<code class="hljs xml" id="jcrContent">
 							
 								</code>
@@ -106,6 +106,7 @@
 	<script src="js/sb-admin.js"></script>
 	<script src="jqtree/tree.jquery.js"></script>
 	<script src="js/highlight.min.js"></script>
+	<script src="js/vkbeautify.js"></script>
 	<script>
 		var contextUrl = $(location).attr('href');
 		var tree = null ;
@@ -119,6 +120,7 @@
 						var node = event.node;
 						makeRequest(contextUrl + "/services/explore?path="
 								+ node.id, node);
+						$('.currentPage').html(node.id);
 					});
 		});
 
@@ -162,7 +164,7 @@
 		
 		function displayContent(node){
 			if(node.properties && node.properties['jcr:data']){
-				$('#jcrContent').text(node.properties['jcr:data'][0]).html();
+				$('#jcrContent').text(vkbeautify.xml(node.properties['jcr:data'][0])).html();
 			}
 			$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		}
