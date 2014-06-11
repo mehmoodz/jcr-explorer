@@ -18,4 +18,7 @@ Explore Jackrabbit Repository, Search, Query , find depedencies
 * Configurable inside existing Projects (Maven overlay, or WEBDAV Connections)
 
 ### Thanks To:
- [SB Admin 2 Theme](http://startbootstrap.com/sb-admin-v2)
+ - [SB Admin 2 Theme](http://startbootstrap.com/sb-admin-v2)
+ - [JQTree](http://mbraak.github.io/)
+ - [VKBeatuify2.0](http://code.google.com/p/vkbeautify/)
+ 

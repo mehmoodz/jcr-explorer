@@ -139,6 +139,9 @@
 			} else {
 				initTree(data);
 			}
+			if(parent_node.type=='nt:folder'){
+				tree.tree('openNode', parent_node);
+			}
 		}
 		function initTree(data) {
 			tree.tree({
