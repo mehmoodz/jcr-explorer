@@ -1,6 +1,8 @@
 package org.jcrexplorer.core;
 
 import javax.jcr.RepositoryException;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,8 +21,8 @@ public class ContentExplorerTest extends AbstractJCRExplorerTestCase{
 		Assert.assertNotNull( contentExplorer.children(contentExplorer.getRoot()));
 	}
 	@Test
-	public void testNodes() throws RepositoryException{
-		Assert.assertNotNull( contentExplorer.children(contentExplorer.getRoot().getPath()));
+	public void testQuery() throws RepositoryException{
+		Assert.assertNotNull( contentExplorer.excute("SELECT * FROM [nt:base]",Query.JCR_SQL2));
 	}
 	
 }

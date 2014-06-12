@@ -21,6 +21,13 @@
 <link rel="stylesheet" href="jqtree/jqtree.css" />
 <link rel="stylesheet" href="css/railscasts.css" />
 
+<style>
+ #queryTxt{
+  margin:20px;
+  width:80%;
+  height:50px;
+ }
+</style>
  
 </head>
 
@@ -59,7 +66,7 @@
 							</div> <!-- /input-group -->
 						</li>
 						<li  >
-							<!-- Explorer Tree -->
+							
 
 							<div id="explorer" style="height:700px;overflow:auto;"></div>
 
@@ -77,6 +84,15 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<strong class="page-header currentPage"></strong>
+					<!-- Explorer Tree -->
+					<ul class="nav nav-tabs">
+						  <li class="active"><a href="#nodeDetails" id="nodeDetailsTab" data-toggle="tab">Node Details</a></li>
+						  <li><a href="#query" id="queryTab" data-toggle="tab">Query</a></li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+					  <div class="tab-pane active" id="nodeDetails">
 					<div class="jcrContent">
 							<pre >
 								<code class="hljs xml" id="jcrContent">
@@ -85,6 +101,33 @@
 							</pre>
 						
 					</div>
+		
+				 </div>
+				<div class="tab-pane" id="query">
+				
+					<input type="text" id="queryTxt" class="queryElements"/><br/>
+					<button id="executeQuery" type="button" class="btn btn-primary" data-toggle="button" class="queryElements">Execute</button>
+					<div>
+					
+					<table class="table table-hover">
+					 <thead>
+					  <tr>
+					  	<th>S.No</th>
+					  	<th>Name</th>
+					  	<th>Path</th>
+					  </tr> 
+					 </thead>
+					 <tbody id="queryResults">
+					 
+					 </tbody> 
+					</table>
+					
+					</div>
+					
+
+				</div>
+					</div>
+					
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -139,7 +182,7 @@
 			} else {
 				initTree(data);
 			}
-			if(parent_node.type=='nt:folder'){
+			if(parent_node && parent_node.type=='nt:folder'){
 				tree.tree('openNode', parent_node);
 			}
 		}
@@ -168,6 +211,7 @@
 		function displayContent(node){
 			if(node.properties && node.properties['jcr:data']){
 				$('#jcrContent').text(vkbeautify.xml(node.properties['jcr:data'][0])).html();
+				$('#nodeDetailsTab').tab('show');
 			}
 			$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		}
@@ -183,6 +227,28 @@
 					id : data.path,
 					type:(data.properties)?data.properties['jcr:primaryType'][0]:''
 				});
+			}
+		}
+		
+		$('#executeQuery').click(function(){
+			$.getJSON(contextUrl + "/services/query?queryStr="+$('#queryTxt').val()+"&type=JCR-SQL2", function(data) {
+				if (!data) {
+					return;
+				}
+				updateResults(data);
+			});
+				
+		});
+		
+		function updateResults(data){
+			$('#queryResults').html('');
+			if (data.length) {
+				
+				var i=1;
+				$.each(data, function(index, node) {
+					$('#queryResults').append('<tr><td>'+(i++)+'</td><td>'+node.name+'</td><td>'+node.path+'</td></tr>');			
+				});
+				
 			}
 		}
 	</script>
