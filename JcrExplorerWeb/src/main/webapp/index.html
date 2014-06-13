@@ -20,13 +20,27 @@
 
 <link rel="stylesheet" href="jqtree/jqtree.css" />
 <link rel="stylesheet" href="css/railscasts.css" />
+<link rel="stylesheet" href="spinner/ladda-themeless.min.css">
+<link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.min.css">
 
 <style>
  #queryTxt{
   margin:20px;
   width:80%;
-  height:50px;
+  height:100px;
+  border:1px solid #ddd;
  }
+ .panel-footer{
+  height:60px;
+  border:1px solid #bce8f1;
+ }
+ .currentPage{
+  color:#428bca;
+ }
+ .alert{
+  height:40px;
+ }
+ 
 </style>
  
 </head>
@@ -35,7 +49,7 @@
 
 	<div id="wrapper">
 
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+		<nav class="navbar navbar-default navbar-fixed-top explorerNav" role="navigation"
 			style="margin-bottom: 0">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -47,7 +61,7 @@
 				<a class="navbar-brand" href="index.html">JCR Explorer</a>
 			</div>
 			<ul class="nav navbar-top-links navbar-right">
-				<li class="explore-path">/</li>
+				<li class="explore-path"><strong class="page-header currentPage"></strong></li>
 			</ul>
 
 			<!-- /.navbar-header -->
@@ -68,7 +82,7 @@
 						<li  >
 							
 
-							<div id="explorer" style="height:700px;overflow:auto;"></div>
+							<div id="explorer" ></div>
 
 						</li>
 
@@ -83,10 +97,10 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<strong class="page-header currentPage"></strong>
+					
 					<!-- Explorer Tree -->
 					<ul class="nav nav-tabs">
-						  <li class="active"><a href="#nodeDetails" id="nodeDetailsTab" data-toggle="tab">Node Details</a></li>
+						  <li class="active"><a href="#nodeDetails" id="nodeDetailsTab" data-toggle="tab">Node Details &nbsp;<img src="img/loading.gif" id="loading" /></a></li>
 						  <li><a href="#query" id="queryTab" data-toggle="tab">Query</a></li>
 					</ul>
 
@@ -94,7 +108,7 @@
 					<div class="tab-content">
 					  <div class="tab-pane active" id="nodeDetails">
 					<div class="jcrContent">
-							<pre >
+							<pre style="overflow:scroll;height:800px;" >
 								<code class="hljs xml" id="jcrContent">
 							
 								</code>
@@ -104,17 +118,43 @@
 		
 				 </div>
 				<div class="tab-pane" id="query">
-				
-					<input type="text" id="queryTxt" class="queryElements"/><br/>
-					<button id="executeQuery" type="button" class="btn btn-primary" data-toggle="button" class="queryElements">Execute</button>
+				<div class="panel panel-info">
+                        <div class="panel-heading">
+                            JCR Query
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                            <textarea id="queryTxt" class="queryElements"/></textarea><br/>
+                            </p>
+                        </div>
+                        <div class="panel-footer col-md-12"  >
+                           <div class="form-group col-md-4 ">
+                                <select class="form-control" id="jcrQueryType">
+                                 <option value="JCR-SQL2">JCR-SQL2</option>
+                                 <option value="XPATH">XPATH</option>
+                                 <option value="JCR-SQL">JCR-SQL</option>
+                              </select>
+                          </div>
+                          <div class="col-md-4">
+                          	<button id="executeQuery" type="button" class="btn btn-primary ladda-button queryElements" data-toggle="button" data-style="expand-left">
+                          	<span class="ladda-label">Execute</span>
+                           
+                          	</button>
+                          </div>
+                          <div class="col-md-4" id="queryStatus">
+                          </div>
+                        </div>
+                    </div>
+					
+					
 					<div>
 					
-					<table class="table table-hover">
+					<table class="table table-striped table-bordered table-hover dataTable no-footer" id="queryPanel" style="display:none;">
 					 <thead>
 					  <tr>
-					  	<th>S.No</th>
-					  	<th>Name</th>
-					  	<th>Path</th>
+					  	<th >S.No</th>
+					  	<th >Name</th>
+					  	<th >Path</th>
 					  </tr> 
 					 </thead>
 					 <tbody id="queryResults">
@@ -150,29 +190,40 @@
 	<script src="jqtree/tree.jquery.js"></script>
 	<script src="js/highlight.min.js"></script>
 	<script src="js/vkbeautify.js"></script>
+	<script src="spinner/spin.min.js"></script>
+	<script src="spinner/ladda.min.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script>
 		var contextUrl = $(location).attr('href');
 		var tree = null ;
+		var executeBtn=  Ladda.create( document.querySelector('#executeQuery') );
+		
 		$(function() {
-			
+			$('#explorerNav').resizable();
+			$('#page-wrapper').resizable();
 			tree=$('#explorer');
 			makeRequest(contextUrl + "/services/explore?path=/");
 			tree.bind(
 					'tree.click',
 					function(event) {
+						$('#loading').show();
 						var node = event.node;
 						makeRequest(contextUrl + "/services/explore?path="
 								+ node.id, node);
 						$('.currentPage').html(node.id);
+						
 					});
 		});
 
 		function makeRequest(url, node) {
+		 
+			
 			$.getJSON(url, function(data) {
 				if (!data) {
 					return;
 				}
 				updateTree(transform(data), node);
+				$('#loading').hide();
 			});
 		}
 		function updateTree(data, parent_node) {
@@ -221,7 +272,9 @@
 				if (!data.name || data.name == '') {
 					data.name = data.path;
 				}
-				 
+				if(!data.name){
+					return;
+				}
 				treeModel.push({
 					label : data.name,
 					id : data.path,
@@ -231,19 +284,23 @@
 		}
 		
 		$('#executeQuery').click(function(){
-			$.getJSON(contextUrl + "/services/query?queryStr="+$('#queryTxt').val()+"&type=JCR-SQL2", function(data) {
+			executeBtn.start();
+			$.getJSON(contextUrl + "/services/query?queryStr="+$('#queryTxt').val()+"&type="+$('#jcrQueryType').val(), function(data) {
+				$('#queryPanel').show();
 				if (!data) {
+					executeBtn.stop();
 					return;
 				}
+				$('#queryStatus').html('<div class="alert alert-success">'+data.length+' Result(s) Found!</div>');
+				$('#queryResults').html('');
 				updateResults(data);
+				executeBtn.stop();
 			});
 				
 		});
 		
 		function updateResults(data){
-			$('#queryResults').html('');
 			if (data.length) {
-				
 				var i=1;
 				$.each(data, function(index, node) {
 					$('#queryResults').append('<tr><td>'+(i++)+'</td><td>'+node.name+'</td><td>'+node.path+'</td></tr>');			
@@ -251,6 +308,24 @@
 				
 			}
 		}
+		
+		// global vars
+		var winWidth = $(window).width();
+		var winHeight = $(window).height();
+
+		// set initial div height / width
+		$('#explorer').css({
+		'height': winHeight,
+		'overflow':'auto'
+		});
+
+		// make sure div stays full width/height on resize
+		$(window).resize(function(){
+		    $('#explorer').css({
+		    'height': winHeight,
+		    'overflow':'auto'
+		});
+		});
 	</script>
 </body>
 

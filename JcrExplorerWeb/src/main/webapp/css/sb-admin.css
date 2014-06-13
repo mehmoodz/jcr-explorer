@@ -5,12 +5,15 @@
 body {
     padding-top: 100px;
     background-color: #f8f8f8;
+    overflow:hidden;
 }
 
 @media(min-width:768px) {
     body {
         padding-top: 50px;
+        overflow:hidden;
     }
+   
 }
 
 /* Wrappers */
