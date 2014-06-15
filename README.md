@@ -3,13 +3,12 @@ JCR-Explorer
 
 Explore Jackrabbit Repository, Search, Query and Manage your JCR Repo Visually
 
+### Content Display and Navigation
 ![JCR Explorer Content Display](https://github.com/mehmoodz/jcr-explorer/raw/master/1.png)
+
+### Query Management
 ![JCR Explorer Query Manager](https://github.com/mehmoodz/jcr-explorer/raw/master/2.png)
 
-
-
-
- https://github.com/mehmoodz/jcr-explorer
 
 ## Features
 
