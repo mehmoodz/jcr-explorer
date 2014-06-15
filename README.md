@@ -3,7 +3,7 @@ JCR-Explorer
 
 Explore Jackrabbit Repository, Search, Query and Manage your JCR Repo Visually
 
-(https://github.com/mehmoodz/jcr-explorer/raw/master/1.png)
+[(https://github.com/mehmoodz/jcr-explorer/raw/master/1.png)](#features)
 (https://github.com/mehmoodz/jcr-explorer/raw/master/2.png)
 
 
