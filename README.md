@@ -1,7 +1,15 @@
 JCR-Explorer
 ============
 
-Explore Jackrabbit Repository, Search, Query , find depedencies
+Explore Jackrabbit Repository, Search, Query and Manage your JCR Repo Visually
+
+(https://github.com/mehmoodz/jcr-explorer/raw/master/1.png)
+(https://github.com/mehmoodz/jcr-explorer/raw/master/2.png)
+
+
+
+
+ https://github.com/mehmoodz/jcr-explorer
 
 ## Features
 
@@ -11,11 +19,20 @@ Explore Jackrabbit Repository, Search, Query , find depedencies
 	- [X] Query Manager
 	- [X] Content Explorer Service
 	- [X] Mockup Tests
-	- [ ] UI for Tree based exploration
-	- [ ] Node Details
+	- [X] UI for Tree based exploration
+	- [X] Node Details
 * Query Browser with XPATH , JCR-SQL2 Support
+    - [X] Support for JCR-SQL, JCR-SQL2, XPATH support 
 * Dependency Graph for the contents published
+    - [X] Planned just full-text for now (for e.g.,) SELECT parent.*  FROM [nt:base] AS parent  where CONTAINS(parent.*, 'BlackJack')
+		
 * Configurable inside existing Projects (Maven overlay, or WEBDAV Connections)
+	- [X] JNDI Integration
+	- [X] Spring Data Source
+	- [ ] WEBDAV
+	
+
+
 
 ### Thanks To:
  - [SB Admin 2 Theme](http://startbootstrap.com/sb-admin-v2)
