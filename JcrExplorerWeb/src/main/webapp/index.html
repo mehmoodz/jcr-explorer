@@ -41,6 +41,10 @@
   height:40px;
  }
  
+ td{
+ 	font-size:12px; 
+ }
+ 
 </style>
  
 </head>
@@ -195,6 +199,9 @@
 	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script>
 		var contextUrl = $(location).attr('href');
+		if(contextUrl.indexOf('.html')!=-1){
+			contextUrl=contextUrl.substring(0,contextUrl.lastIndexOf('/')+1);
+		}
 		var tree = null ;
 		var executeBtn=  Ladda.create( document.querySelector('#executeQuery') );
 		
@@ -318,6 +325,12 @@
 		'height': winHeight,
 		'overflow':'auto'
 		});
+		
+		$('#query').css({
+			'height': winHeight,
+			'overflow':'auto'
+			});
+		 
 
 		// make sure div stays full width/height on resize
 		$(window).resize(function(){
@@ -325,7 +338,14 @@
 		    'height': winHeight,
 		    'overflow':'auto'
 		});
+		    
+		    $('#query').css({
+				'height': winHeight,
+				'overflow':'auto'
+				});
 		});
+		 
+		 
 	</script>
 </body>
 
