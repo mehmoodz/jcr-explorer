@@ -96,9 +96,9 @@ $('#executeQuery').click(
 			$.getJSON(contextUrl + "/services/query?queryStr="
 					+ $('#queryTxt').val() + "&type="
 					+ $('#jcrQueryType').val(), function(data) {
+				executeBtn.stop();
 				$('#queryPanel').show();
 				if (!data) {
-					executeBtn.stop();
 					return;
 				}
 				$('#queryStatus').html(
@@ -106,7 +106,11 @@ $('#executeQuery').click(
 								+ ' Result(s) Found!</div>');
 				$('#queryResults').html('');
 				updateResults(data);
+			})
+			.error(function() { 
 				executeBtn.stop();
+				$('#queryStatus').html(
+						'<div class="alert alert-danger"> Error executing query !</div>');
 			});
 
 		});
