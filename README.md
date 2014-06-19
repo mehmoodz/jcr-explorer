@@ -29,9 +29,15 @@ Explore Jackrabbit Repository, Search, Query and Manage your JCR Repo Visually
 	- [X] JNDI Integration
 	- [X] Spring Data Source
 	- [ ] WEBDAV
+
+## Getting Started
+
+### Integrating JCR Explorer with Spring based configuration
 	
-
-
+	- Define org.springmodules.jcr.jackrabbit.RepositoryFactoryBean for Repository object
+	- Inject repository object in JCRManager configuration defined in jcr-context-core.xml in JCRExplorerCore Module
+	- Copy web resources to your web app project
+	- Make sure your web.xml has necessary DispatcherServlet Configuration as found JCRExplorerWeb/src/main/webapp/WEB-INF/web.xml
 
 ### Thanks To:
  - [SB Admin 2 Theme](http://startbootstrap.com/sb-admin-v2)

@@ -19,5 +19,5 @@
 	<mvc:annotation-driven />
 	
 	<jee:jndi-lookup id="jackrabbit.repository.path" jndi-name="jackrabbit.repository.path" />
-	<import resource="classpath:applicationContext-core.xml"/>
+	<import resource="classpath:jcr-context-core.xml"/>
 </beans>

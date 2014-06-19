@@ -7,7 +7,7 @@
 	<display-name>JCR-Explorer</display-name>
 
 	<servlet>
-		<servlet-name>applicationContext-web</servlet-name>
+		<servlet-name>jcrexplorer-web</servlet-name>
 		<servlet-class>
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -15,7 +15,7 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>applicationContext-web</servlet-name>
+		<servlet-name>jcrexplorer-web</servlet-name>
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 	
