@@ -32,11 +32,22 @@ Explore Jackrabbit Repository, Search, Query and Manage your JCR Repo Visually
 
 ## Getting Started
 
-### Integrating JCR Explorer with Spring based configuration
+### Integrating JCR Explorer through JNDI 
 	
 * Define org.springmodules.jcr.jackrabbit.RepositoryFactoryBean for Repository object
+	
+	- "jackrabbit.repository.path" JNDI Name needs to be specified in server.xml like
+	
+	<Resource name="jackrabbit.repository.path" auth="Container" type="javax.jcr.Repository" factory="org.apache.jackrabbit.core.jndi.BindableRepositoryFactory" 
+		configFilePath="<CONFIG_DIR>/jcrconfig.xml" repHomeDir="<JCR-HOME-DIR>" />
+		
 * Inject repository object in JCRManager configuration defined in jcr-context-core.xml in JCRExplorerCore Module
+	
+	- Have a look at the jcrexplorer-web-servlet.xml to integrate define JNDI lookup configuration
+	
 * Copy web resources to your web app project
+	- Under JCRExplorerWeb/src/main/webapp/
+	
 * Make sure your web.xml has necessary DispatcherServlet Configuration as found JCRExplorerWeb/src/main/webapp/WEB-INF/web.xml
 
 ### Thanks To:
