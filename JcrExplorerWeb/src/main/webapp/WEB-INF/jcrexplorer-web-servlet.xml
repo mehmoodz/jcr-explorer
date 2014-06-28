@@ -18,6 +18,7 @@
 	<context:component-scan base-package="com.jcrexplorer.dto,com.jcrexplorer.controller" />
 	<mvc:annotation-driven />
 	
+	
 	<jee:jndi-lookup id="jackrabbit.repository.path" jndi-name="jackrabbit.repository.path" />
 	<import resource="classpath:jcr-context-core.xml"/>
 </beans>

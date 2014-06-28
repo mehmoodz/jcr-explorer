@@ -1,17 +1,17 @@
 package org.explorer.core.logging;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
 @Component
 @Aspect
 public class LoggingAspect {
-	private final Log log = LogFactory.getLog(this.getClass());
+	private static final Logger log = LoggerFactory.getLogger(LoggingAspect.class);
 	
 	@Around("execution(* org.explorer..*.*(..))")
 	public Object log(ProceedingJoinPoint joinPoint) throws Throwable{
@@ -20,6 +20,7 @@ public class LoggingAspect {
 		logMsg.append(joinPoint.getTarget().getClass().getName());
 		logMsg.append(".");
 		logMsg.append(joinPoint.getSignature().getName());
+		log.info(logMsg.toString());
 		return returnVal;
 	} 
 	
