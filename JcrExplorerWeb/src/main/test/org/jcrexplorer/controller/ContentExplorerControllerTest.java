@@ -1,4 +1,4 @@
-package com.jcrexplorer.controller;
+package org.jcrexplorer.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

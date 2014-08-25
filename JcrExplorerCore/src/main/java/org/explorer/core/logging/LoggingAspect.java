@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 	private static final Logger log = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	@Around("execution(* *(..))")
+	@Around("execution(* org.jcrexplorer..*(..))")
 	public Object log(ProceedingJoinPoint joinPoint) throws Throwable{
 		Object returnVal=joinPoint.proceed();
 		StringBuffer logMsg=new StringBuffer();

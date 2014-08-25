@@ -1,4 +1,4 @@
-package com.jcrexplorer.controller;
+package org.jcrexplorer.controller;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

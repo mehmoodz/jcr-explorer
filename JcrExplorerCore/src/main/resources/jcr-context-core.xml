@@ -11,13 +11,14 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
 	
-	<context:component-scan base-package="com.jcrexplorer" />
-	<aop:aspectj-autoproxy/>
+	<context:component-scan base-package="org.jcrexplorer" />
+	 
 	
 	<bean id="jcrManager" class="org.jcrexplorer.core.JCRManager">
-		<constructor-arg name="repository" ref="jackrabbit.repository.path"  type="javax.jcr.Repository"/>
-		<constructor-arg name="username" value="admin" />
-		<constructor-arg name="password" value="admin" />
+	
+		<constructor-arg index="0" name="repository" ref="jackrabbit.repository.path" />
+		<constructor-arg index="1" name="username" value="admin" />
+		<constructor-arg index="2" name="password" value="admin" />
 	</bean>
 	
 	<bean id="contentExplorer" class="org.jcrexplorer.core.ContentExplorer" />

@@ -1,4 +1,4 @@
-package com.jcrexplorer.dto.value;
+package org.jcrexplorer.dto.value;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jcrexplorer.controller;
+package org.jcrexplorer.controller;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jcrexplorer.dto.NodeResponseAssembler;
-import com.jcrexplorer.dto.NodeResult;
+import org.jcrexplorer.dto.NodeResponseAssembler;
+import org.jcrexplorer.dto.NodeResult;
 
 @Controller
 public class ContentExplorerController {

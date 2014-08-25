@@ -1,4 +1,4 @@
-package com.jcrexplorer.dto;
+package org.jcrexplorer.dto;
 
 import java.util.List;
 import java.util.Map;

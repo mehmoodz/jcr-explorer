@@ -1,4 +1,4 @@
-package com.jcrexplorer.dto;
+package org.jcrexplorer.dto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import javax.jcr.PropertyIterator;
 
 import org.springframework.stereotype.Component;
 
-import com.jcrexplorer.dto.value.ValueUtils;
+import org.jcrexplorer.dto.value.ValueUtils;
 
 @Component
 public class NodeResponseAssembler {
