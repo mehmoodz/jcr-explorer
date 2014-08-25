@@ -20,7 +20,6 @@
 
 	<mvc:annotation-driven />
 
-	<bean id="loggingAspect" class="org.explorer.core.logging.LoggingAspect" />
 	<jee:jndi-lookup id="jackrabbit.repository.path"
 		jndi-name="jackrabbit.repository.path" />
 
